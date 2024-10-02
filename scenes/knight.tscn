@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctyyphiu2noeq"]
+
+[ext_resource type="Script" path="res://scripts/overworld/knight.gd" id="1_4w48n"]
+[ext_resource type="SpriteFrames" uid="uid://bxjepbhi6am5c" path="res://assets/sprite_frames/overworld/characters/knight.tres" id="2_on6dx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l2f1"]
+size = Vector2(12, 10)
+
+[node name="Knight" type="CharacterBody2D"]
+script = ExtResource("1_4w48n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+sprite_frames = ExtResource("2_on6dx")
+animation = &"idle_up"
+offset = Vector2(0, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_8l2f1")
+
+[node name="timer_initial" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="timer_print" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="timer_initial" to="." method="_on_timer_initial_timeout"]
+[connection signal="timeout" from="timer_print" to="." method="_on_timer_print_timeout"]

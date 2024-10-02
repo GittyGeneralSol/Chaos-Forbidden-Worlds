@@ -1,0 +1,259 @@
+[gd_scene load_steps=30 format=3 uid="uid://tkcsf1ljdqnn"]
+
+[ext_resource type="Texture2D" uid="uid://cbhcc3qrqgn7i" path="res://assets/sprites/battle/enemies/sans_undertale/head/0.png" id="1_2r8j3"]
+[ext_resource type="Texture2D" uid="uid://c0fk22bwsicj2" path="res://assets/sprites/battle/enemies/speech_bubble.png" id="2_51m0u"]
+[ext_resource type="Texture2D" uid="uid://dn4sjhsj23syn" path="res://assets/sprites/battle/enemies/sans_undertale/head/1.png" id="2_s0ike"]
+[ext_resource type="PackedScene" uid="uid://cdhye7ndiak02" path="res://objects/battle/hud_manager.tscn" id="3_5e3ix"]
+[ext_resource type="Texture2D" uid="uid://ruiirtvcnvwx" path="res://assets/sprites/battle/enemies/sans_undertale/head/2.png" id="3_d2a6i"]
+[ext_resource type="PackedScene" uid="uid://budogvo5p1iw6" path="res://objects/battle/battle_box.tscn" id="4_4yajr"]
+[ext_resource type="Texture2D" uid="uid://lphq3cfp7j8a" path="res://assets/sprites/battle/enemies/sans_undertale/head/3.png" id="4_i6yqr"]
+[ext_resource type="Texture2D" uid="uid://cpgdbhhqq4ohw" path="res://assets/sprites/battle/enemies/sans_undertale/head/4.png" id="5_0qo5m"]
+[ext_resource type="FontFile" uid="uid://ds6wqfq03pwda" path="res://assets/fonts/main_mono.ttf" id="5_wlkg8"]
+[ext_resource type="Texture2D" uid="uid://cxbk0on8j1d3x" path="res://assets/sprites/battle/enemies/sans_undertale/head/5.png" id="6_tk6b8"]
+[ext_resource type="PackedScene" uid="uid://frb40ffyat0v" path="res://objects/battle/player_heart.tscn" id="7_1vkjp"]
+[ext_resource type="PackedScene" uid="uid://dhcxqo8jsl3pw" path="res://objects/battle/attack_manager.tscn" id="7_2tvut"]
+[ext_resource type="Texture2D" uid="uid://dwwni3sm5c01o" path="res://assets/sprites/battle/enemies/sans_undertale/head/6.png" id="7_uuvf4"]
+[ext_resource type="Texture2D" uid="uid://tkfrn6c4jswe" path="res://assets/sprites/battle/enemies/sans_undertale/head/eye/0.png" id="8_wmrrv"]
+[ext_resource type="Texture2D" uid="uid://bbap5sf6pf88g" path="res://assets/sprites/battle/enemies/sans_undertale/head/eye/1.png" id="9_r6cby"]
+[ext_resource type="Texture2D" uid="uid://binrk8nwkj501" path="res://assets/sprites/battle/enemies/sans_undertale/torso.png" id="10_peh6k"]
+[ext_resource type="Texture2D" uid="uid://b05o17e400038" path="res://assets/sprites/battle/enemies/sans_undertale/torso_shrug.png" id="11_5tt4b"]
+[ext_resource type="Texture2D" uid="uid://cx7sbjvngblx1" path="res://assets/sprites/battle/enemies/sans_undertale/legs.png" id="12_rt360"]
+
+[sub_resource type="GDScript" id="GDScript_60in0"]
+script/source = "extends BattleRoom
+
+func _ready():
+	super._ready()
+	vars.hud_manager.reset()
+"
+
+[sub_resource type="Gradient" id="Gradient_tuxiy"]
+offsets = PackedFloat32Array(0, 0.05, 0.9, 1)
+colors = PackedColorArray(0.0235294, 0.490196, 0.741176, 1, 0.141176, 0.333333, 0.572549, 1, 0.0117647, 0.00392157, 0.0196078, 1, 0.0196078, 0.00784314, 0.0313726, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fkand"]
+gradient = SubResource("Gradient_tuxiy")
+fill_from = Vector2(0.478632, 1)
+fill_to = Vector2(0.508547, 0.0299145)
+
+[sub_resource type="GDScript" id="GDScript_wftwh"]
+script/source = "extends TextureRect
+
+var t = 0.0
+
+func _process(delta):
+	t += delta
+	texture.gradient.offsets[1] = max(sin(t) / 2 + .3, 0)
+"
+
+[sub_resource type="GDScript" id="GDScript_ohi4s"]
+script/source = "extends Enemy
+
+@onready var torso_position = $torso.position
+@onready var head_position = $head.position
+
+var torso_offset := Vector2.ZERO
+var head_offset := Vector2.ZERO
+var siner := 0.0
+
+var animation_mode := 0
+
+func _init():
+	super._init(\"Sans\",1,1)
+	
+func _ready():
+	sprite = $legs
+	damage_anchor = $damage_anchor
+	show_health_bar = false
+	dodge = e_dodge.dodge
+
+func _process(delta):
+	match(animation_mode):
+		0: torso_offset = Vector2(0, 0)
+		1: torso_offset = Vector2(cos(siner / 6), sin(siner / 3))
+		2: torso_offset.y = sin(siner / 15) * 4
+		3: torso_offset.y = sin(siner / 18) * 2
+	
+	$torso.position = torso_position + Vector2(torso_offset.x, torso_offset.y / 1.5)
+	$head.position = head_position + (torso_offset + head_offset)
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1rbl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_rt360")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eyef1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_peh6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5tt4b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sw7ow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2r8j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s0ike")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d2a6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i6yqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0qo5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tk6b8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uuvf4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_wmrrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r6cby")
+}],
+"loop": true,
+"name": &"flash",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_uiy3g"]
+script/source = "extends Writer
+"
+
+[sub_resource type="GDScript" id="GDScript_jri2l"]
+script/source = "extends Writer
+"
+
+[sub_resource type="GDScript" id="GDScript_vt12r"]
+script/source = "extends DialougeManager
+"
+
+[node name="battle_example" type="Node2D"]
+script = SubResource("GDScript_60in0")
+
+[node name="camera" type="Camera2D" parent="."]
+offset = Vector2(320, 240)
+ignore_rotation = false
+
+[node name="gradient" type="TextureRect" parent="."]
+offset_left = -1.0
+offset_top = 328.0
+offset_right = 640.0
+offset_bottom = 481.0
+texture = SubResource("GradientTexture2D_fkand")
+script = SubResource("GDScript_wftwh")
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="example_enemy" type="Node2D" parent="enemies"]
+position = Vector2(334, 185)
+script = SubResource("GDScript_ohi4s")
+
+[node name="damage_anchor" type="Node2D" parent="enemies/example_enemy"]
+position = Vector2(0, -79)
+
+[node name="legs" type="AnimatedSprite2D" parent="enemies/example_enemy"]
+position = Vector2(-1, 42)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_u1rbl")
+
+[node name="torso" type="AnimatedSprite2D" parent="enemies/example_enemy"]
+position = Vector2(-2, -4)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_eyef1")
+
+[node name="head" type="AnimatedSprite2D" parent="enemies/example_enemy"]
+position = Vector2(-2, -46)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sw7ow")
+
+[node name="speech_bubble" type="NinePatchRect" parent="enemies/example_enemy"]
+visible = false
+offset_left = 59.0
+offset_top = -35.0
+offset_right = 223.0
+offset_bottom = 56.0
+texture = ExtResource("2_51m0u")
+patch_margin_left = 31
+patch_margin_top = 44
+patch_margin_right = 22
+
+[node name="speech_writer" type="RichTextLabel" parent="enemies/example_enemy/speech_bubble"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 3.0
+offset_right = 158.0
+offset_bottom = 85.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+visible_characters_behavior = 1
+script = SubResource("GDScript_uiy3g")
+
+[node name="hud_manager" parent="." instance=ExtResource("3_5e3ix")]
+
+[node name="battle_box" parent="." instance=ExtResource("4_4yajr")]
+
+[node name="battle_writer" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 52.0
+offset_top = 270.0
+offset_right = 601.0
+offset_bottom = 384.0
+theme_override_colors/font_shadow_color = Color(0.11, 0.11, 0.39, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/normal_font = ExtResource("5_wlkg8")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 0
+visible_characters_behavior = 1
+script = SubResource("GDScript_jri2l")
+
+[node name="player_heart" parent="." instance=ExtResource("7_1vkjp")]
+
+[node name="attack_manager" parent="." instance=ExtResource("7_2tvut")]
+
+[node name="dialouge_manager" type="Node2D" parent="."]
+script = SubResource("GDScript_vt12r")
+
+[node name="black_screen" type="ColorRect" parent="."]
+visible = false
+z_index = 255
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="white_screen" type="ColorRect" parent="."]
+visible = false
+z_index = 255
+offset_right = 640.0
+offset_bottom = 480.0

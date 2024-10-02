@@ -1,0 +1,170 @@
+[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://bxjepbhi6am5c"]
+
+[ext_resource type="Texture2D" uid="uid://dpnairqd58kq3" path="res://assets/sprites/overworld/characters/body/knight/down/idle1.png" id="1_u5xjg"]
+[ext_resource type="Texture2D" uid="uid://c2kfsu142eome" path="res://assets/sprites/overworld/characters/body/knight/down/stomp1.png" id="2_34f0d"]
+[ext_resource type="Texture2D" uid="uid://cholhh1x5elf3" path="res://assets/sprites/overworld/characters/body/knight/down/walk1.png" id="2_tfdcv"]
+[ext_resource type="Texture2D" uid="uid://lx816yi5ndyy" path="res://assets/sprites/overworld/characters/body/knight/down/stomp2.png" id="3_78or4"]
+[ext_resource type="Texture2D" uid="uid://b6qbko61b7g7g" path="res://assets/sprites/overworld/characters/body/knight/down/walk2.png" id="3_jjrcr"]
+[ext_resource type="Texture2D" uid="uid://cqvulas6q48xx" path="res://assets/sprites/overworld/characters/body/knight/down/walk3.png" id="4_5aiin"]
+[ext_resource type="Texture2D" uid="uid://c7r2tg2npcxpy" path="res://assets/sprites/overworld/characters/body/knight/down/stomp3.png" id="4_fq44t"]
+[ext_resource type="Texture2D" uid="uid://bv1ywnmwh63hj" path="res://assets/sprites/overworld/characters/body/knight/down/walk4.png" id="5_ak8e2"]
+[ext_resource type="Texture2D" uid="uid://sniv1xq8kuuw" path="res://assets/sprites/overworld/characters/body/knight/down/stomp4.png" id="5_mwavl"]
+[ext_resource type="Texture2D" uid="uid://cys4cbq4nm7qv" path="res://assets/sprites/overworld/characters/body/knight/down/stomp5.png" id="6_4y57l"]
+[ext_resource type="Texture2D" uid="uid://5ra2u0etbxls" path="res://assets/sprites/overworld/characters/body/knight/left/idle1.png" id="6_ltts4"]
+[ext_resource type="Texture2D" uid="uid://br2hw0m41h86m" path="res://assets/sprites/overworld/characters/body/knight/down/stomp6.png" id="7_42lwl"]
+[ext_resource type="Texture2D" uid="uid://b78b4hdlgexbe" path="res://assets/sprites/overworld/characters/body/knight/right/idle1.png" id="7_b3ty8"]
+[ext_resource type="Texture2D" uid="uid://chxrlgdq7qq34" path="res://assets/sprites/overworld/characters/body/knight/right/walk1.png" id="9_0blw1"]
+[ext_resource type="Texture2D" uid="uid://b28cdxwewkaku" path="res://assets/sprites/overworld/characters/body/knight/left/walk1.png" id="9_j102d"]
+[ext_resource type="Texture2D" uid="uid://clj63ruanws25" path="res://assets/sprites/overworld/characters/body/knight/left/walk2.png" id="10_6y4q1"]
+[ext_resource type="Texture2D" uid="uid://55276ja6hkxh" path="res://assets/sprites/overworld/characters/body/knight/idle1.png" id="10_ekkbd"]
+[ext_resource type="Texture2D" uid="uid://blusi73nd72fv" path="res://assets/sprites/overworld/characters/body/knight/right/walk2.png" id="10_vak7i"]
+[ext_resource type="Texture2D" uid="uid://d1nvitqbn81xk" path="res://assets/sprites/overworld/characters/body/knight/left/walk3.png" id="11_6f6ey"]
+[ext_resource type="Texture2D" uid="uid://bctyu7htguod5" path="res://assets/sprites/overworld/characters/body/knight/right/walk3.png" id="11_8pd0b"]
+[ext_resource type="Texture2D" uid="uid://4fclmkveh2ob" path="res://assets/sprites/overworld/characters/body/knight/left/walk4.png" id="12_f3c3k"]
+[ext_resource type="Texture2D" uid="uid://cn6algly37878" path="res://assets/sprites/overworld/characters/body/knight/right/walk4.png" id="12_vmspl"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u5xjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_u5xjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_34f0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_34f0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_34f0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_78or4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_78or4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_78or4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fq44t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fq44t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fq44t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mwavl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4y57l")
+}],
+"loop": false,
+"name": &"down_stomp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_42lwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_u5xjg")
+}],
+"loop": true,
+"name": &"down_stomp2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u5xjg")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ltts4")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_b3ty8")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ekkbd")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tfdcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jjrcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5aiin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ak8e2")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_j102d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6y4q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6f6ey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_f3c3k")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_0blw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vak7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8pd0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vmspl")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
